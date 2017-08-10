@@ -9,7 +9,7 @@ const fetchChild = (id, cb) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Basic ${new Buffer('qinshuo:4693687').toString('base64')}`
+        Authorization: `Basic ${new Buffer('yangning:52113140ynjira').toString('base64')}`
       }
     }).then(res => res.json())
   }

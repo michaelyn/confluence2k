@@ -9,8 +9,8 @@ function downloadImg (idAndName, dest, cb) {
   request.head(url, function (err, res, body) {
     request(url, {
       'auth': {
-        user: 'qinshuo',
-        pass: '4693687'
+        user: 'yangning',
+        pass: '52113140ynjira'
       }
     })
     .pipe(file)
