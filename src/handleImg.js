@@ -23,7 +23,7 @@ function handleImg (id) {
 
     if ((/<ac:parameter ac:name="diagramName">([\s\S]*)<\/ac:parameter>/g).test(ac[1])) {
       var imgName = (/<ac:parameter ac:name="diagramName">([\s\S]+?)<\/ac:parameter>/g).exec(ac[1])[1]
-      imgName = imgName.replace(/[ :]/g, '')
+      imgName = imgName.replace(/[ :\?]/g, '')
       downloadImg(`${id}/${imgName}.png`, `./build/${id}/${imgName}.png`, (info) => {
         console.log(chalk.green(`- File ${imgName}.png download completed`))
       })
@@ -48,7 +48,7 @@ function handleImg (id) {
 
     var url = (/http:\/\//g).test(imgName) ? imgName : `${id}/${imgName}`
     imgName = (/http:\/\//g).test(imgName) ? (/[\s\S]*\/([\s\S]*.png)/g).exec(imgName)[1] : imgName
-    imgName = imgName.replace(/[ :]/g, '')
+    imgName = imgName.replace(/[ :\?]/g, '')
     img = `<img src="./${imgName}" />`
 
     downloadImg(url, `./build/${id}/${imgName}`, (info) => {
@@ -61,7 +61,8 @@ function handleImg (id) {
   function replace3 (page) {
     return page.replace(/(<img[\s\S]+?src=")([\s\S]+?)(">)/g, (match, s1, s2, s3) => {
       const src = s2
-      const imgName = decodeURI((/[\s\S]*\/([\s\S]*)/g).exec(s2)[1])
+      var imgName = decodeURI((/[\s\S]*\/([\s\S]*)/g).exec(s2)[1])
+      imgName = imgName.replace(/[ :\?]/g, '')
 
       downloadImg(src, `./build/${id}/${imgName}`, (info) => {
         console.log(chalk.green(`- File ${imgName} download completed`))
