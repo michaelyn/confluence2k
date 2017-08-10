@@ -5,6 +5,7 @@ function handleX (id) {
   this.page = replace4(this.page)
   this.page = replace5(this.page)
   this.page = replace6(this.page)
+  this.page = replace7(this.page)
 }
 
 var replace1 = (page) => page.replace(/<p><\/p>/g, '')
@@ -39,5 +40,10 @@ var replace6 = (page) => {
   return page.replace(re, '<ul class="inline-task-list" style="display:none;"')
 }
 
+// replace 192.168.130.51 in file href path
+var replace7 = (page) => {
+  var re = /<a href="http:\/\/192\.168\.130\.51:8090\/pages\/viewpage\.action\?pageId=([\d]{8})">/mg
+  return page.replace(re, '<a href="../$1/index.html">')
+}
 
 module.exports = handleX
