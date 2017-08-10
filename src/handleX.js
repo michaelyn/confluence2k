@@ -4,6 +4,7 @@ function handleX (id) {
   this.page = replace3(this.page)
   this.page = replace4(this.page)
   this.page = replace5(this.page)
+  this.page = replace6(this.page)
 }
 
 var replace1 = (page) => page.replace(/<p><\/p>/g, '')
@@ -26,12 +27,17 @@ var replace4 = (page) => {
   return page
 }
 
-let replace5 = (page) => {
+var replace5 = (page) => {
   // <a href="/pages/viewpage.action?pageId=10457799&amp;preview=%2F10457799%2F10458247%2FdemoTool.zip">
   var re = /<a href="([\s\S]+)%2F([\s\S]+)zip">/g 
   return page.replace(re, '<a href="$2zip">')
 }
 
+// remove task-lis
+var replace6 = (page) => {
+  var re = /<ul class="inline-task-list"/mg
+  return page.replace(re, '<ul class="inline-task-list" style="display:none;"')
+}
 
 
 module.exports = handleX
