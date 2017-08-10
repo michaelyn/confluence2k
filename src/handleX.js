@@ -28,9 +28,8 @@ var replace4 = (page) => {
 
 let replace5 = (page) => {
   // <a href="/pages/viewpage.action?pageId=10457799&amp;preview=%2F10457799%2F10458247%2FdemoTool.zip">
-  if ((/<a href="[\s\S]+?zip">/g).test(page)) {
-
-  }
+  var re = /<a href="([\s\S]+)%2F([\s\S]+)zip">/g 
+  return page.replace(re, '<a href="$2zip">')
 }
 
 
